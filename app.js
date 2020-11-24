@@ -1,7 +1,7 @@
 //imports
 const express = require('express')
 const app=express()
-const port = 3600
+const port = 3668
 const mysql = require('mysql')
 
 
@@ -29,7 +29,7 @@ connection.connect(function(err){
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
-app.use('/img', express.static(__dirname + 'public/img'))
+app.use('/images', express.static(__dirname + 'public/images'))
 
 
 //set views
@@ -38,12 +38,40 @@ app.set('view engine', 'ejs')
 
 app.get('', (req, res) => {
     
-    connection.query('select * from _Owner', function (err, result, fields) {
+    connection.query('select * from Image', function (err, result, fields) {
         if (err) throw err;
         console.log(result);
-        res.render('in', {text: result})
+        res.render('index', {text: result})
       });
     
+})
+
+// app.get('', (req,res) => {
+//     res.render('index')
+// })
+
+app.get('/properties', (req,res) => {
+    res.render('properties')
+})
+
+app.get('/about', (req,res) => {
+    res.render('about')
+})
+
+app.get('/contact', (req,res) => {
+    res.render('contact')
+})
+
+app.get('/signup', (req,res) => {
+    res.render('signup')
+})
+
+app.get('/login', (req,res) => {
+    res.render('login')
+})
+
+app.get('/:id', (req,res) => {
+    res.render('properties-single')
 })
 
 
