@@ -7,11 +7,11 @@ const mysql = require('mysql')
 
 //sql connection
 var connection = mysql.createConnection({
-    host: "database-dbms.cmz5bi7ls8oh.ap-south-1.rds.amazonaws.com",
-    user: "admin",
-    password: "admin123",
+    host: "hostelmanagement.cvm78zwmdrtv.us-east-1.rds.amazonaws.com",
+    user: "admin_hostel",
+    password: "dqQwjrfe4J$SqvQbhavika",
     port: "3306",
-    database: "dbms_project"
+    database: "hostel_db"
 });
 
 connection.connect(function(err){
