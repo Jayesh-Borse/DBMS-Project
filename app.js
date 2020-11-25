@@ -11,7 +11,8 @@ var connection = mysql.createConnection({
     user: "admin_hostel",
     password: "dqQwjrfe4J$SqvQbhavika",
     port: "3306",
-    database: "hostel_db"
+    database: "hostel_db",
+    multipleStatements : true
 });
 
 connection.connect(function(err){
@@ -36,9 +37,9 @@ app.use('/images', express.static(__dirname + 'public/images'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-app.get('', (req, res) => {
-    
-    connection.query('select * from Image', function (err, result, fields) {
+app.get('/', (req, res) => {
+    let q = 'select * from Residence r join Image i on r.Residence_ID = i.Residence_ID join Location l on r.Residence_ID = l.Location_ID;select * from Satisfactory';
+    connection.query(q, function (err, result, fields) {
         if (err) throw err;
         console.log(result);
         res.render('index', {text: result})
@@ -46,12 +47,21 @@ app.get('', (req, res) => {
     
 })
 
-// app.get('', (req,res) => {
-//     res.render('index')
+// app.get('/', (req,res) => {
+//     connection.query("select * from Hos_Features hf join Residence r on hf.Residence_ID = r.Residence_ID where hf.Residence_ID=1", function(err, result, fields){
+//         if(err) throw err;
+//         console.log(result)
+//         console.log(typeof result)
+//     });
+//     res.render('in');
 // })
 
 app.get('/properties', (req,res) => {
-    res.render('properties')
+    connection.query('select * from Residence r join Image i on r.Residence_ID = i.Residence_ID join Location l on r.Residence_ID = l.Location_ID', function(err, result, fields) {
+        if(err) throw err;
+        console.log(result);
+        res.render('properties', {properties : result});
+    });
 })
 
 app.get('/about', (req,res) => {
@@ -71,10 +81,18 @@ app.get('/login', (req,res) => {
 })
 
 app.get('/:id', (req,res) => {
-    res.render('properties-single')
-})
+    let q = "select * from Residence r join Image i on r.Residence_ID = i.Residence_ID join Location l on r.Residence_ID = l.Location_ID where r.Residence_ID = ?;select * from Hos_Features hf join Gen_Amenities ga on hf.Gen_ID = ga.Gen_ID where hf.Residence_ID =?;select Email,Ph_no from _Owner o join Residence r on o.Owner_id = r.Owner_ID where r.Residence_ID=?"
 
+    connection.query(q,[req.params.id,req.params.id,req.params.id],function(err, result, fields){  
+        if(err) throw err;
+        res.render('properties-single',{property : result});
+    });
+    
+});
 
+app.post('/:id', (req,res) => {
+    console.log(req.params.id);
+});
 
 //listen on port 3000
-app.listen(port, () => console.info(`Listening on port ${port}`))
+app.listen(port, () => console.info(`Listening on port ${port}`));

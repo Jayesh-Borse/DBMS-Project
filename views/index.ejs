@@ -62,7 +62,7 @@
 	          	<div class="text pb-4 pt-5">
 		            <h1 class="mb-4" style="color: black">OxfordCaps, Katraj</h1>
 		            <div class="desc">
-			            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country.</p>
+			            <p><%= text[0][4]["Residence_Des"]%></p>
 		            </div>
 	            </div>
 	          </div>
@@ -75,12 +75,12 @@
         				<div class="details p-5">
 	        				<span class="cat d-block mb-4">Hostel</span>
 			        		<h3 class="mb-3" style="color: black">OxfordCaps, Katraj</h3>
-									<p class="loc"><span class="icon-my_location mr-2"></span> Trimurti Chowk, Dhankawadi, Katraj, Pune</p>
-									<ul class="mb-4">
+									<p class="loc"><span class="icon-my_location mr-2"></span><%=text[0][4]["Address"]%> </p>
+									<!-- <ul class="mb-4">
 										<li><span>Area:</span> <span>250sqft</span></li>
 										<li><span>Bedroom:</span> <span>3</span></li>
-									</ul>
-									<p><a href="properties-single.html" class="btn btn-black btn-outline-black py-3">View Accomodation</a></p>
+									</ul> -->
+									<p><a href="/<%= text[0][4].Residence_ID %>" class="btn btn-black btn-outline-black py-3">View Accomodation</a></p>
 								</div>
         			</div>
         		</div>
@@ -96,7 +96,7 @@
 	          	<div class="text pb-4 pt-5">
 		            <h1 class="mb-4">Stanza Living, Katraj</h1>
 		            <div class="desc">
-			            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country.</p>
+			            <p>Stanza Living - You will love this delightful 3-story Tudor with old-world charm and breathtaking views of Beaver Lake.</p>
 		            </div>
 	            </div>
 	          </div>
@@ -109,12 +109,8 @@
         				<div class="details p-5">
 	        				<span class="cat d-block mb-4">Hostel</span>
 			        		<h3 class="mb-3">Stanza Living, Katraj</h3>
-									<p class="loc"><span class="icon-my_location mr-2"></span> Trimurti Chowk, Dhankawadi, Katraj, Pune</p>
-									<ul class="mb-4">
-										<li><span>Area:</span> <span>250sqft</span></li>
-										<li><span>Bedroom:</span> <span>3</span></li>
-									</ul>
-									<p><a href="#" class="btn btn-black btn-outline-black py-3">View Accomodation</a></p>
+									<p class="loc"><span class="icon-my_location mr-2"></span><%= text[0][3]["Address"]%></p>
+									<p><a href="/<%= text[0][4].Residence_ID %>" class="btn btn-black btn-outline-black py-3">View Accomodation</a></p>
 								</div>
         			</div>
         		</div>
@@ -198,86 +194,23 @@
         <div class="row">
         	<div class="col-md-12">
             <div class="carousel-properties owl-carousel">
-				<% text.forEach(function(i){ %> 
+				<% text[0].forEach(function(i){ %> 
 					<div class="item">
 						<div class="project">
 									<div class="img">
 	
 										<img src=<%=i.Image_path%> class="img-fluid" alt="Colorlib Template">
 										<div class="text">
-											<span>Sale</span>
-											<h3><a href="properties.html">Fatima <br> Subdivision</a></h3>
+											<h3><a href="/<%= i.Residence_ID %>"><%= i.Residence_Name %></a></h3>
 										</div>
 									</div>
 									<div class="desc pt-3">
-										<h4 class="price">$120,000</h4>
-											<p class="h-info"><span class="location">New York</span> <span class="details">&mdash; 3bds, 2bath</span></p>
+										<p class="h-info"><span class="location"><%= i.Area_Name%></span></p>
 									</div>
 								</div>
 					</div>
 
 			<%    })%>
-            	
-            	<!-- <div class="item">
-            		<div class="project">
-		    					<div class="img">
-				    				<img src="images/work-2.jpg" class="img-fluid" alt="Colorlib Template">
-				    				<div class="text">
-				    					<span>Sale</span>
-				    					<h3><a href="properties.html">Fatima <br> Subdivision</a></h3>
-				    				</div>
-			    				</div>
-			    				<div class="desc pt-3">
-			    					<h4 class="price">$120,000</h4>
-										<p class="h-info"><span class="location">New York</span> <span class="details">&mdash; 3bds, 2bath</span></p>
-			    				</div>
-		    				</div>
-            	</div>
-            	<div class="item">
-            		<div class="project">
-		    					<div class="img">
-				    				<img src="images/work-3.jpg" class="img-fluid" alt="Colorlib Template">
-				    				<div class="text">
-				    					<span>Sale</span>
-				    					<h3><a href="properties.html">Fatima <br> Subdivision</a></h3>
-				    				</div>
-			    				</div>
-			    				<div class="desc pt-3">
-			    					<h4 class="price">$120,000</h4>
-										<p class="h-info"><span class="location">New York</span> <span class="details">&mdash; 3bds, 2bath</span></p>
-			    				</div>
-		    				</div>
-            	</div>
-            	<div class="item">
-            		<div class="project">
-		    					<div class="img">
-				    				<img src="images/work-4.jpg" class="img-fluid" alt="Colorlib Template">
-				    				<div class="text">
-				    					<span>Sale</span>
-				    					<h3><a href="properties.html">Fatima <br> Subdivision</a></h3>
-				    				</div>
-			    				</div>
-			    				<div class="desc pt-3">
-			    					<h4 class="price">$120,000</h4>
-										<p class="h-info"><span class="location">New York</span> <span class="details">&mdash; 3bds, 2bath</span></p>
-			    				</div>
-		    				</div>
-            	</div>
-            	<div class="item">
-            		<div class="project">
-		    					<div class="img">
-				    				<img src="images/work-5.jpg" class="img-fluid" alt="Colorlib Template">
-				    				<div class="text">
-				    					<span>Sale</span>
-				    					<h3><a href="properties.html">Fatima <br> Subdivision</a></h3>
-				    				</div>
-			    				</div>
-			    				<div class="desc pt-3">
-			    					<h4 class="price">$120,000</h4>
-										<p class="h-info"><span class="location">New York</span> <span class="details">&mdash; 3bds, 2bath</span></p>
-			    				</div>
-		    				</div>
-            	</div> -->
             </div>
         </div>
 			</div>
@@ -328,41 +261,12 @@
 									</div>
 								</div>
 							</div>
-							<p><a href="about.html" class="btn-custom">Learn More <span class="ml-2 ion-ios-arrow-forward"></span></a></p>
+							<p><a href="/about" class="btn-custom">Learn More <span class="ml-2 ion-ios-arrow-forward"></span></a></p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-
-		<!-- <section class="ftco-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="heading-section mb-5 ftco-animate">
-	            <h2 class="mb-4">Welcome to Hamlet A Real Estate Agency</h2>
-	            <p>Far far away, behind the word mountains, far from the countries</p>
-	          </div>
-	          <div class="about-img img p-5 d-flex align-items-center" style="background-image: url(images/bg_1.jpg);">
-	          	<div class="about-div">
-	          		<h4 style="color:white;">Buying A Properties the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life.</h4>
-	          		<p class="mb-0"><a href="#" class="btn-custom-2">Read more <span class="ml-2 icon-long-arrow-right"></span></a></p>
-	          	</div>
-	          </div>
-					</div>
-					<div class="col-md-6 d-flex">
-	          <div class="img img-3 p-5 d-flex align-self-stretch border" style="background-image: url(images/about-3.jpg);">
-	          	<div class="about-div bg-darken about-wrap">
-	          		<h4 style="color:white;">Renting A Properties Pointing has no control about the blind texts it is an almost unorthographic life.</h4>
-	          		<p class="mb-0"><a href="#" class="btn-custom-2">Read more <span class="ml-2 icon-long-arrow-right"></span></a></p>
-	          	</div>
-	          </div>
-					</div>
-				</div>
-			</div>
-		</section> -->
-
-
     <section class="ftco-section ftco-no-pt testimony-section" style="margin-top: 40px">
     	<div class="overlay"></div>
       <div class="container">
@@ -374,155 +278,27 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel">
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                  </div>
-                  <div class="text">
-                  	<span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                    <p class="mb-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="mb-4">
-	                    <p class="name">Gary Smith</p>
-	                    <span class="position">Buyer</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
-                  </div>
-                  <div class="text">
-                  	<span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                    <p class="mb-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="mb-4">
-	                    <p class="name">Ronald Dock</p>
-	                    <span class="position">Buyer</span>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
-                  </div>
-                  <div class="text">
-                  	<span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                    <p class="mb-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="mb-4">
-	                    <p class="name">Donald Simon</p>
-	                    <span class="position">Buyer</span>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                  </div>
-                  <div class="text">
-                  	<span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                    <p class="mb-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="mb-4">
-	                    <p class="name">Henry Smith</p>
-	                    <span class="position">Broker</span>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                  </div>
-                  <div class="text">
-                  	<span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                    <p class="mb-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="mb-4">
-	                    <p class="name">John Buff</p>
-	                    <span class="position">Agent</span>
-	                  </div>
-                  </div>
-                </div>
-              </div>
+				<% text[1].forEach(function(i){ %>
+					<div class="item">
+						<div class="testimony-wrap p-4 pb-5">
+						  <div class="text">
+							  <span class="quote d-flex align-items-center justify-content-center">
+							  <i class="icon-quote-left"></i>
+							</span>
+							<p class="mb-4 line"><%=i.Customer_Comment%></p>
+							<div class="mb-4">
+								<p class="name"><%=i.Customer_Name%></p>
+							</div>
+						  </div>
+						</div>
+					  </div>
+				<% }) %>
             </div>
           </div>
         </div>
       </div>
     </section>
 			
-		<!-- <section class="ftco-section ftco-no-pt">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 mb-5 heading-section ftco-animate">
-            <h2 class="mb-4">Press Releases</h2>
-            <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-            <p><a href="#" class="btn-custom">Read our blog <span class="ml-2 ion-ios-arrow-forward"></span></a></p>
-          </div>
-          <div class="col-md-9">
-          	<div class="row">
-		          <div class="col-md-4 ftco-animate">
-		            <div class="blog-entry">
-		              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-		              </a>
-		              <div class="text py-4">
-		                <div class="meta mb-2">
-		                  <div><a href="#">Jan. 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <div class="desc">
-			                <h3 class="heading"><a href="#">Pointing has no control about the blind texts</a></h3>
-			              </div>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-4 ftco-animate">
-		            <div class="blog-entry" data-aos-delay="100">
-		              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-		              </a>
-		              <div class="text py-4">
-		                <div class="meta mb-2">
-		                  <div><a href="#">Jan. 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <div class="desc">
-			                <h3 class="heading"><a href="#">Pointing has no control about the blind texts</a></h3>
-			              </div>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-4 ftco-animate">
-		            <div class="blog-entry" data-aos-delay="200">
-		              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-		              </a>
-		              <div class="text py-4">
-		                <div class="meta mb-2">
-		                  <div><a href="#">Jan. 20, 2019</a></div>
-		                  <div><a href="#">Admin</a></div>
-		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-		                </div>
-		                <div class="desc">
-			                <h3 class="heading"><a href="#">Pointing has no control about the blind texts</a></h3>
-			              </div>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-        </div>
-			</div>
-		</section> -->
 
 		<section class="ftco-section ftco-no-pb ftco-no-pt ftco-counter img ftco-animate" id="section-counter">
     	<div class="container">
@@ -577,56 +353,7 @@
               </ul>
             </div>
           </div>
-          <!-- <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Company</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>About</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Services</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>FAQ</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Reviews</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Stories</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Explore</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Privacy</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Policy</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Terms</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Review</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Features</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Get Started</h2>
-              <ul class="list-unstyled">
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Buy</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Rent</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Payment</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Mortgage</a></li>
-                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Loan</a></li>
-              </ul>
-            </div>
-          </div> -->
-         <!--  <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Contact Us</h2>
-            	<p>Far far away, behind the word mountains, far from the countries.</p>
-              <form action="#" class="subscribe-form">
-                <div class="form-group">
-                  <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                  <input type="text" class="form-control mb-2 text-center" placeholder="Comments">
-                  <input type="submit" value="Send" class="form-control submit px-3">
-                </div>
-              </form>
-            </div>
-          </div> -->
+          
         </div>
       </div>
     </footer>
