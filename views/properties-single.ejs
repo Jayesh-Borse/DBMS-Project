@@ -70,6 +70,7 @@
       				<div class="item">
 						  <!-- <div class="properties-img" style="background-image: url();"></div> -->
 						  <img src= <%= property[0][0]["Image_path"] %> >
+
       				</div>
       				<div class="item">
       					<div class="properties-img" style="background-image: url(images/work-2.jpg);"></div>
@@ -125,10 +126,10 @@
 							<div style="color: black;"><strong>John Doe: </strong></div><p>It is a nice hostel.</p>
 							<div style="color: black;"><strong>Angela Martin: </strong></div><p>It is a nice hostel.</p>
 							<div><a href="#">Read all Reviews..</a></div><br>
-							<form action="/:id"  method="POST">
-								<textarea placeholder="Write a review..." cols="50" rows="3"></textarea>
+							<form action="/<%= property[0][0].Residence_ID %>/create"  method="POST">
+								<textarea placeholder="Write a review..." cols="50" rows="3" name=rev></textarea>
 								<div class="col-md-3 align-self-end ftco-animate">
-								<a href = "#"><input type="submit" value="Submit" class="form-control btn btn-primary"></a>
+								<input type="submit" value="Submit" class="form-control btn btn-primary">
 							</form>
 							
 							</div>
