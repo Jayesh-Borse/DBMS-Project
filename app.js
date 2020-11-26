@@ -3,7 +3,7 @@ const express = require('express')
 const app=express()
 const port = 3668
 const mysql = require('mysql')
-
+var bodyParser = require('body-parser')
 
 //sql connection
 var connection = mysql.createConnection({
@@ -31,7 +31,7 @@ app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use('/images', express.static(__dirname + 'public/images'))
-
+app.use(bodyParser.urlencoded({ extended: false }))
 
 //set views
 app.set('views', './views')
@@ -90,8 +90,18 @@ app.get('/:id', (req,res) => {
     
 });
 
-app.post('/:id', (req,res) => {
+app.post('/:id/create',(req,res) => {
     console.log(req.params.id);
+    console.log(req.body.rev);
+    let t="/"+req.params.id;
+    req.params.id=parseInt(req.params.id);
+    let q = "insert into Review values(null,?,4,now(),1,?);select * from Review where Student_id=1;";
+    connection.query(q,[req.body.rev,req.params.id],function(err,result,fields){
+        if(err) throw err;
+        console.log(result[1]);
+        res.redirect(t);
+    });
+    
 });
 
 //listen on port 3000
