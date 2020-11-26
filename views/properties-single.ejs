@@ -69,7 +69,7 @@
       			<div class="single-slider owl-carousel">
       				<div class="item">
 						  <!-- <div class="properties-img" style="background-image: url();"></div> -->
-						  <img src= <%= property[0][0]["Image_path"] %> >
+						  <img src= <%= property[0][0].Image_path %> >
 
       				</div>
       				<div class="item">
@@ -92,12 +92,6 @@
 									<li><span><strong><emp><%= i.Gen_Type %></emp></strong></span></li>
 								<% })  %>
     						</ul>
-    						<!-- <ul class="ml-md-5">
-    							<li><span>Floor Area: </span> 1,300 SQ FT</li>
-    							<li><span>Year Build:: </span> 2018</li>
-    							<li><span>Stories: </span> 1</li>
-    							<li><span>Roofing: </span> New</li>
-    						</ul> -->
 						  </div>
 						  <h4 style="margin-bottom: -30px; margin-top: 30px;">Contact Details:</h4>
 						  <div class="d-md-flex mt-5 mb-5">
@@ -109,8 +103,8 @@
         		</div>
 
         		<div class="col-md-12 properties-single ftco-animate mb-5 mt-4">
-        			<h4 class="mb-4">Review &amp; Ratings: </h4>
-        			<div class="row">
+        			<h4 class="mb-4">Reviews</h4>
+        			<!-- <div class="row">
         				<div class="col-md-6">
         					<form method="post" class="star-rating">
 									  <div class="form-check">
@@ -120,13 +114,17 @@
 									  </div>
 						</form>
         				</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="col-md-9">
-							<div style="color: black;"><strong>John Doe: </strong></div><p>It is a nice hostel.</p>
-							<div style="color: black;"><strong>Angela Martin: </strong></div><p>It is a nice hostel.</p>
-							<div><a href="#">Read all Reviews..</a></div><br>
+							<%property[3].forEach(function(i){%>
+								<div style="color: black;"><strong> <%= i.Fname %> <%= i.Lname %></strong></div><p><%=i.Review_Content%></p>
+							<%})%>
+							<!-- <div style="color: black;"><strong>John Doe: </strong></div><p>It is a nice hostel.</p>
+							<div style="color: black;"><strong>Angela Martin: </strong></div><p>It is a nice hostel.</p> -->
+							<!-- <div><a href="#">Read all Reviews..</a></div><br> -->
 							<form action="/<%= property[0][0].Residence_ID %>/create"  method="POST">
+								<!-- <input type="text" name="name" placeholder="Name" style="margin-bottom: 10px; width:490px;" autocomplete="off"> -->
 								<textarea placeholder="Write a review..." cols="50" rows="3" name=rev></textarea>
 								<div class="col-md-3 align-self-end ftco-animate">
 								<input type="submit" value="Submit" class="form-control btn btn-primary">

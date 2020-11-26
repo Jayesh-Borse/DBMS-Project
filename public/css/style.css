@@ -8580,7 +8580,7 @@ h1, h2, h3, h4, h5,
     height: inherit !important;
     font-size: 18px;
     border: none !important;
-    color: rgba(255, 255, 255, 0.4) !important;
+    /* color: rgba(255, 255, 255, 0.4) !important; */
     background: transparent !important;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;

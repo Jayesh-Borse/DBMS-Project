@@ -156,6 +156,14 @@
 					</div><!-- end -->
 			<div class="col-lg-9">
 		        <div class="row">
+                    <% if(properties.length > 0){ %>
+                        <h3>Properties available in <%=loc%></h3>
+                    <% } else{ %>  
+                        <h3>No Properties matched for your search!!</h3>
+                    <% } %>
+                    
+                </div> 
+                <div class="row">
 					<% properties.forEach(function(i){ %>
 						<div class="col-md-6 col-lg-4 ftco-animate">
 		    				<div class="project">
@@ -176,6 +184,7 @@
 		    			
 		    			
 		    		</div>
+		    		
 		    	</div>
 	    	</div>
 			</div>

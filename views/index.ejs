@@ -119,34 +119,33 @@
       </div>
     </section>
 
-    <section class="ftco-section ftco-no-pb ftco-no-pt" style="margin-top: 120px">
+	<section class="ftco-section ftco-no-pb ftco-no-pt" style="margin-top: 120px">
     	<div class="container">
 	    	<div class="row">
 					<div class="col-md-12">
 						<div class="search-wrap-1 ftco-animate p-4 px-5">
-							<form action="#" class="search-property-1">
+							<form action="/search" method="POST" class="search-property-1">
 		        		<div class="row">
 		        			<div class="col-lg align-items-end">
 		        				<div class="form-group">
-		        					<label for="#">Location</label>
+		        					<label for="location">Location</label>
 		          				<div class="form-field">
 		          					<div class="icon"><span class="ion-ios-search"></span></div>
-				                <input type="text" class="form-control" placeholder="City/Locality Name">
+				                <input type="text" name="location" class="form-control" placeholder="Kothrud" value="Kothrud">
 				              </div>
 			              </div>
 		        			</div>
 		        			<div class="col-lg align-items-end">
 		        				<div class="form-group">
-		        					<label for="#">Accomodation Type</label>
+		        					<label for="Accomodate">Accomodation Type</label>
 		        					<div class="form-field">
 		          					<div class="select-wrap">
 		                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                      <select name="" id="" class="form-control">
-								<option value="">Select</option>
-		                      	<option value="">PG</option>
-		                        <option value="">Hostel</option>
-		                        <option value="">Flat</option>
-		                        <option value="">Bungalow</option>
+		                      <select name="Accomodate" id="" class="form-control">
+								<option value="hostel">Hostel</option>
+		                      	<option value="pg">PG</option>
+		                        <option value="flat">Flat</option>
+		                        <option value="bungalow">Bungalow</option>
 		                      </select>
 		                    </div>
 				              </div>
@@ -155,15 +154,14 @@
 		        			
 		        			<div class="col-lg align-items-end">
 		        				<div class="form-group">
-		        					<label for="#">Gender</label>
+		        					<label for="gender">Gender</label>
 		        					<div class="form-field">
 		          					<div class="select-wrap">
 		                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                      <select name="" id="" class="form-control">
-								<option value="">Select</option>
-		                        <option value="">Male</option>
-		                        <option value="">Female</option>
-		                        <option value="">Co-Ed</option>
+		                      <select name="gender" id="" class="form-control">
+								  <option value="female">Female</option>
+		                        <option value="male">Male</option>
+		                        <option value="coed">Co-Ed</option>
 		                      </select>
 		                    </div>
 				              </div>
@@ -172,7 +170,9 @@
 		        			<div class="col-lg align-self-end">
 		        				<div class="form-group">
 		        					<div class="form-field">
-				                <input type="submit" value="Search" class="form-control btn btn-primary">
+										
+								<input type="submit" value="Search" class="form-control btn btn-primary">
+										
 				              </div>
 			              </div>
 		        			</div>
@@ -182,7 +182,7 @@
 					</div>
 	    	</div>
 	    </div>
-    </section>
+	</section>
 
     <section class="ftco-section ftco-no-pb" style="margin-top: -40px">
 			<div class="container">
@@ -309,7 +309,7 @@
 			          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text">
-			                <strong class="number" data-number="1000">0</strong>
+			                <strong class="number" data-number=<%= text[2][0]['var']%>>0</strong>
 			                <span>Properties</span>
 			              </div>
 			            </div>
@@ -317,7 +317,7 @@
 			          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text">
-			                <strong class="number" data-number="351">0</strong>
+			                <strong class="number" data-number=<%= text[3][0]['var']%>>0</strong>
 			                <span>Happy Clients</span>
 			              </div>
 			            </div>
@@ -325,7 +325,7 @@
 			          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
 			            <div class="block-18">
 			              <div class="text">
-			                <strong class="number" data-number="564">0</strong>
+			                <strong class="number" data-number=<%= text[4][0]['var']%>>0</strong>
 			                <span>Reviews</span>
 			              </div>
 			            </div>
