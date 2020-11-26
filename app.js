@@ -4,14 +4,14 @@ const app=express()
 const port = 3668
 const mysql = require('mysql')
 var bodyParser = require('body-parser')
-
+require('dotenv').config()
 //sql connection
 var connection = mysql.createConnection({
-    host: "hostelmanagement.cvm78zwmdrtv.us-east-1.rds.amazonaws.com",
-    user: "admin_hostel",
-    password: "dqQwjrfe4J$SqvQbhavika",
-    port: "3306",
-    database: "hostel_db",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME,
     multipleStatements : true
 });
 
