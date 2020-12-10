@@ -4,6 +4,9 @@ const app=express()
 const port = 3668
 const mysql = require('mysql')
 var bodyParser = require('body-parser')
+// var router = express.Router();
+// var login = require('./routes/loginroutes');
+
 require('dotenv').config()
 //sql connection
 var connection = mysql.createConnection({
@@ -32,6 +35,15 @@ app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use('/images', express.static(__dirname + 'public/images'))
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 
 //set views
 app.set('views', './views')
@@ -47,15 +59,6 @@ app.get('/', (req, res) => {
     
 })
 
-// app.get('/', (req,res) => {
-//     connection.query("select * from Hos_Features hf join Residence r on hf.Residence_ID = r.Residence_ID where hf.Residence_ID=1", function(err, result, fields){
-//         if(err) throw err;
-//         console.log(result)
-//         console.log(typeof result)
-//     });
-//     res.render('in');
-// })
-
 app.get('/properties', (req,res) => {
     connection.query('select * from Residence r join Image i on r.Residence_ID = i.Residence_ID join Location l on r.Residence_ID = l.Location_ID', function(err, result, fields) {
         if(err) throw err;
@@ -64,8 +67,14 @@ app.get('/properties', (req,res) => {
     });
 })
 
-app.get('/about', (req,res) => {
-    res.render('about')
+app.get('/about', (req, res) => {
+    let q = 'select * from Residence r join Image i on r.Residence_ID = i.Residence_ID join Location l on r.Residence_ID = l.Location_ID;select * from Satisfactory;select count(*) as var from Residence; select count(*) as var from Student; select count(*) as var from Review;';
+    connection.query(q, function (err, result, fields) {
+        if (err) throw err;
+        // console.log(result);
+        res.render('about', {text: result})
+      });
+    
 })
 
 app.get('/contact', (req,res) => {
@@ -73,11 +82,11 @@ app.get('/contact', (req,res) => {
 })
 
 app.get('/signup', (req,res) => {
-    res.render('signup')
+    res.render('auth/signup')
 })
 
 app.get('/login', (req,res) => {
-    res.render('login')
+    res.render('auth/login')
 })
 
 app.get('/:id', (req,res) => {
@@ -148,5 +157,9 @@ app.post('/searchad', (req, res) => {
       });
 
 })
+app.use('/loginroutes', require('./routes/loginroutes'))
+
+// router.post('/register',login.signup);
+// router.post('/login',login.login)
 //listen on port 3000
 app.listen(port, () => console.info(`Listening on port ${port}`));
