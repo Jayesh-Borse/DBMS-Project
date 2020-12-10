@@ -104,7 +104,7 @@ app.get('/:id', (req,res) => {
         if(err);
         console.log(result);
         if(isLoggedIn.getValue()){
-            res.render('properties-single',{property : result});
+            res.render('properties-single',{property : result, userStatus : isLoggedIn});
         }
         else{
             res.redirect('/login');
