@@ -4,9 +4,7 @@ const app=express()
 const port = 3668
 const mysql = require('mysql')
 var bodyParser = require('body-parser')
-// var router = express.Router();
-// var login = require('./routes/loginroutes');
-
+const isLoggedIn = require('./middleware/index1')
 require('dotenv').config()
 //sql connection
 var connection = mysql.createConnection({
@@ -54,7 +52,8 @@ app.get('/', (req, res) => {
     connection.query(q, function (err, result, fields) {
         if (err) throw err;
         // console.log(result);
-        res.render('index', {text: result})
+        const userStatus = isLoggedIn;
+        res.render('index', {text: result, userStatus: userStatus})
       });
     
 })
@@ -63,7 +62,8 @@ app.get('/properties', (req,res) => {
     connection.query('select * from Residence r join Image i on r.Residence_ID = i.Residence_ID join Location l on r.Residence_ID = l.Location_ID', function(err, result, fields) {
         if(err) throw err;
         // console.log(result);
-        res.render('properties', {properties : result});
+        const userStatus = isLoggedIn;
+        res.render('properties', {properties : result, userStatus: userStatus});
     });
 })
 
@@ -72,13 +72,15 @@ app.get('/about', (req, res) => {
     connection.query(q, function (err, result, fields) {
         if (err) throw err;
         // console.log(result);
-        res.render('about', {text: result})
+        const userStatus = isLoggedIn;
+        res.render('about', {text: result, userStatus: userStatus})
       });
     
 })
 
 app.get('/contact', (req,res) => {
-    res.render('contact')
+    const userStatus = isLoggedIn;
+    res.render('contact', {userStatus: userStatus})
 })
 
 app.get('/signup', (req,res) => {
@@ -86,7 +88,13 @@ app.get('/signup', (req,res) => {
 })
 
 app.get('/login', (req,res) => {
-    res.render('auth/login')
+    res.render('auth/login', {params : 200})
+})
+
+app.get('/logout', (req,res) => {
+    isLoggedIn.setValue(0);
+    console.log(isLoggedIn.getValue());
+    res.redirect('/');
 })
 
 app.get('/:id', (req,res) => {
@@ -95,11 +103,15 @@ app.get('/:id', (req,res) => {
     connection.query(q,[req.params.id,req.params.id,req.params.id,req.params.id],function(err, result, fields){  
         if(err);
         console.log(result);
-        res.render('properties-single',{property : result});
+        if(isLoggedIn.getValue()){
+            res.render('properties-single',{property : result});
+        }
+        else{
+            res.redirect('/login');
+        }
     });
     
 });
-
 
 app.post('/:id/create',(req,res) => {
     console.log(req.params.id);
@@ -113,10 +125,9 @@ app.post('/:id/create',(req,res) => {
         console.log(result[0]["count(*)"]);
         count = result[0]["count(*)"];
     });
-    var randx = Math.floor((Math.random() * 10) + 1);
-    console.log("random id:",randx);
     let q = "insert into Review values(null,?,4,now(),?,?);select * from Review where Student_ID=?";
-    connection.query(q,[req.body.rev,randx,req.params.id,randx],function(err,result,fields){
+    const id = isLoggedIn.getId();
+    connection.query(q,[req.body.rev,id,req.params.id,id],function(err,result,fields){
         if(err) throw err;
         console.log(result[1]);
         // console.log(result);
@@ -133,10 +144,10 @@ app.post('/search', (req, res) => {
     let loc = req.body.location;
     let im = connection.query(q, [acc , req.body.gender, req.body.location], function (err, result, fields) {
         if (err) throw err;
-        console.log(req.body);
-        console.log(result);
-        res.render('search_properties', {properties: result,loc : loc})
-
+        // console.log(req.body);
+        // console.log(result);
+        const userStatus = isLoggedIn;
+        res.render('search_properties', {properties: result,loc : loc, userStatus: userStatus})
       });
 
 })
@@ -152,14 +163,13 @@ app.post('/searchad', (req, res) => {
         if (err) throw err;
         console.log(req.body);
         console.log(result);
-        res.render('search_properties', {properties: result, loc : loc})
+        const userStatus = isLoggedIn;
+        res.render('search_properties', {properties: result, loc : loc, userStatus: userStatus})
 
       });
 
 })
 app.use('/loginroutes', require('./routes/loginroutes'))
 
-// router.post('/register',login.signup);
-// router.post('/login',login.login)
 //listen on port 3000
 app.listen(port, () => console.info(`Listening on port ${port}`));

@@ -64,6 +64,11 @@
               <div class="form-group">
                 <input type="password" class="form-control" placeholder="Password" name="password">
               </div>
+              <% if(params === 204){%>
+                <p>Email and password do not match.</p>
+              <% } else if(params === 206){ %>
+                <p>Email does not exist.</p>
+              <% } %>
               <div class="form-group">
                 <input type="submit" value="Log In" class="btn btn-primary py-3 px-5">
               </div>
